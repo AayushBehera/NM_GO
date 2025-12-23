@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NMGO - Nuclear Micro-Grid Optimizer | DevOps-Grade Energy Intelligence">
+    <meta name="keywords" content="nuclear, energy, AI, optimization, DevOps, cloud, SMR, renewable">
+    <meta name="author" content="NMGO Team">
+    <meta name="theme-color" content="#0b1120">
+    
+    <title>NMGO - DevOps Nuclear Energy Intelligence Platform</title>
+    
+    <style>
+        /* ============================================================================
+           ROOT VARIABLES & THEME SYSTEM
+           ============================================================================ */
+
+        :root {
+            --bg-main: #0b1120;
+            --bg-secondary: #020617;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #cbd5f5;
+            --accent: #38bdf8;
+            --accent-2: #22c55e;
+            --accent-3: #f59e0b;
+            
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 40px rgba(0,0,0,0.3);
+            --shadow-lg: 0 25px 50px rgba(0,0,0,0.4);
+            
+            --transition: all 0.4s ease;
+        }
+
+        body.light {
+            --bg-main: #f8fafc;
+            --bg-secondary: #e5e7eb;
+            --card-bg: #ffffff;
+            --text-main: #020617;
+            --text-muted: #475569;
+        }
+
+        /* ============================================================================
+           RESET & BASE STYLES
+           ============================================================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            transition: background 0.4s ease, color 0.4s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============================================================================
+           TYPOGRAPHY
+           ============================================================================ */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 54px;
+        }
+
+        h2 {
+            font-size: 42px;
+        }
+
+        h3 {
+            font-size: 28px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-2);
+        }
+
+        /* ============================================================================
+           BUTTONS
+           ============================================================================ */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #020617;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--accent);
+            border: 1.5px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: #020617;
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 17px;
+        }
+
+        /* ============================================================================
+           NAVIGATION
+           ============================================================================ */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(11, 17, 32, 0.95));
+            backdrop-filter: blur(10px);
+            padding: 18px 10%;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            gap: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1.5px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent);
+            color: #020617;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ============================================================================
+           HERO SECTION
+           ============================================================================ */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 90px 10%;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 54px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .hero-illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-svg {
+            width: 100%;
+            max-width: 450px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        /* ============================================================================
+           PREMIUM SECTION
+           ============================================================================ */
+
+        .premium-section {
+            padding: 90px 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+        .section-header.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 17px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================================
+           CARD GRID & DEVOPS CARDS
+           ============================================================================ */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+
+        .devops-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .devops-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .devops-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .devops-card h3 {
+            color: var(--accent);
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .devops-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================================
+           PRICING SECTION
+           ============================================================================ */
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 35px;
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+            position: relative;
+        }
+
+        .pricing-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-15px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #020617;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features i {
+            color: var(--accent-2);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* ============================================================================
+           TEAM SECTION
+           ============================================================================ */
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .team-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-avatar {
+            font-size: 60px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .team-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .bio {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(56, 189, 248, 0.2);
+            border-radius: 50%;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: #020617;
+        }
+
+        /* ============================================================================
+           CTA SECTION
+           ============================================================================ */
+
+        .cta-section {
+            padding: 120px 10%;
+        }
+
+        .cta {
+            padding: 70px 60px;
+            text-align: center;
+            border-radius: 25px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #020617;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1s ease;
+        }
+
+        .cta.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cta h3 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            color: #020617;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: rgba(2, 6, 23, 0.8);
+            margin-bottom: 32px;
+        }
+
+        .cta .btn {
+            margin-top: 20px;
+        }
+
+        /* ============================================================================
+           CONTACT SECTION
+           ============================================================================ */
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+
+        .contact-form.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .contact-form button {
+            align-self: flex-start;
+            margin-top: 8px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+
+        .contact-info.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: var(--accent);
+            min-width: 30px;
+            margin-top: 4px;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 8px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        /* ============================================================================
+           FOOTER
+           ============================================================================ */
+
+        .footer {
+            background: var(--bg-secondary);
+            padding: 60px 10%;
+            border-top: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .footer-section p {
+            margin-bottom: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(56, 189, 248, 0.15);
+            border-radius: 50%;
+            color: var(--accent);
+            transition: var(--transition);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: #020617;
+            border-color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(56, 189, 248, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ============================================================================
+           RESPONSIVE DESIGN
+           ============================================================================ */
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .navbar-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .premium-section {
+                padding: 60px 6%;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--bg-secondary);
+                padding: 20px;
+                gap: 16px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .nav-links.active {
+                max-height: 400px;
+            }
+            
+            .section-header h2 {
+                font-size: 32px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .cta {
+                padding: 50px 30px;
+            }
+            
+            .cta h3 {
+                font-size: 32px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 16px 5%;
+            }
+            
+            .navbar-brand {
+                font-size: 20px;
+            }
+            
+            .premium-section {
+                padding: 50px 5%;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .card-grid {
+                gap: 20px;
+            }
+            
+            .devops-card {
+                padding: 25px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .cta {
+                padding: 40px 20px;
+            }
+            
+            .hero-stats {
+                gap: 20px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .theme-toggle {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <i class="fas fa-atom"></i> NMGO
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-links" id="navMenu">
+                <a href="#features">Features</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">DevOps-Grade Nuclear Micro-Grid Optimization</h1>
+                <p class="hero-subtitle">
+                    Revolutionizing Data Center Power with AI, Nuclear Precision, and Cloud-Native Infrastructure. 
+                    Enterprise-grade DevOps automation for SMR-powered sustainable energy solutions.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Request Demo
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf"></i> Learn More
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">99.9%</span>
+                        <span class="stat-label">Uptime SLA</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">50%</span>
+                        <span class="stat-label">Cost Reduction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">Zero</span>
+                        <span class="stat-label">Carbon Emissions</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-illustration">
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <circle cx="200" cy="200" r="80" fill="url(#grad1)" filter="url(#glow)"/>
+                    <circle cx="200" cy="200" r="60" fill="#ffffff" opacity="0.2"/>
+                    
+                    <circle cx="200" cy="200" r="20" fill="#38bdf8" opacity="0.9">
+                        <animate attributeName="r" values="20;26;20" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <g>
+                        <circle cx="290" cy="200" r="6" fill="#22c55e" opacity="0.8">
+                            <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="110" cy="200" r="6" fill="#22c55e" opacity="0.6">
+                            <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="-360 200 200" dur="10s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="premium-section">
+        <div class="section-header observe">
+            <h2>Enterprise DevOps Architecture</h2>
+            <p>Production-grade infrastructure automation, CI/CD pipelines, and cloud-native deployment strategies</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3>CI/CD Pipelines</h3>
+                <p>
+                    Automated build, test, and deployment workflows using GitHub Actions, Jenkins, and GitLab CI. 
+                    Continuous integration for rapid feature delivery with zero-downtime deployments.
+                </p>
+            </div>
+
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Cloud Infrastructure</h3>
+                <p>
+                    Multi-cloud support (AWS, Azure, GCP) with Infrastructure as Code using Terraform and CloudFormation. 
+                    Auto-scaling, load balancing, and disaster recovery.
+                </p>
+            </div>
+
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3>Kubernetes & Containers</h3>
+                <p>
+                    Docker containerization with Kubernetes orchestration for microservices. 
+                    Self-healing, rolling updates, and automated scaling for mission-critical workloads.
+                </p>
+            </div>
+
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>DevSecOps & Monitoring</h3>
+                <p>
+                    Security-first approach with automated scanning, compliance checking, and vulnerability management. 
+                    Real-time monitoring via Prometheus, Grafana, and ELK stack.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="premium-section">
+        <div class="section-header observe">
+            <h2>Modern Energy Grid Architecture</h2>
+            <p>Cloud-native, microservices-based system designed for nuclear-powered data centers</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h3>Predictive Analytics Engine</h3>
+                <p>
+                    ML-powered forecasting with 98% accuracy. Real-time data processing via Apache Kafka, 
+                    TensorFlow model serving, and Kubernetes-managed inference clusters.
+                </p>
+            </div>
+
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Dynamic Optimization Core</h3>
+                <p>
+                    Genetic algorithm optimization running on distributed GPU clusters. 
+                    Real-time SMR output balancing with renewable integration and grid tie management.
+                </p>
+            </div>
+
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <h3>Compliance & Audit Engine</h3>
+                <p>
+                    Blockchain-secured immutable audit logs. Automated regulatory reporting for IAEA/NRC compliance. 
+                    Reduce operational overhead by 80% with AI-driven compliance automation.
+                </p>
+            </div>
+
+            <div class="devops-card observe">
+                <div class="card-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Carbon Credit Monetization</h3>
+                <p>
+                    ISO 14064 compliant emissions tracking. Smart contract-based carbon credit marketplace. 
+                    Real-time ROI dashboards and predictive revenue modeling.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="premium-section">
+        <div class="section-header observe">
+            <h2>Flexible SaaS Pricing</h2>
+            <p>Scale your nuclear-powered data center without limits</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card observe">
+                <h3>Startup</h3>
+                <div class="price">$5K<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 1 Facility Monitoring</li>
+                    <li><i class="fas fa-check"></i> Basic Predictions</li>
+                    <li><i class="fas fa-check"></i> Email Support</li>
+                    <li><i class="fas fa-times"></i> Custom Integration</li>
+                </ul>
+                <button class="btn btn-secondary">Select Plan</button>
+            </div>
+
+            <div class="pricing-card popular observe">
+                <span class="badge">Most Popular</span>
+                <h3>Professional</h3>
+                <div class="price">$10K<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Unlimited Facilities</li>
+                    <li><i class="fas fa-check"></i> Full Optimization Suite</li>
+                    <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
+                    <li><i class="fas fa-check"></i> Custom Integrations</li>
+                </ul>
+                <button class="btn btn-primary">Select Plan</button>
+            </div>
+
+            <div class="pricing-card observe">
+                <h3>Enterprise</h3>
+                <div class="price">Custom<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Dedicated Instance</li>
+                    <li><i class="fas fa-check"></i> On-Premises Option</li>
+                    <li><i class="fas fa-check"></i> White-Glove Onboarding</li>
+                    <li><i class="fas fa-check"></i> 99.99% SLA Guarantee</li>
+                </ul>
+                <button class="btn btn-secondary">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="premium-section">
+        <div class="section-header observe">
+            <h2>Nuclear & DevOps Experts</h2>
+            <p>Fusion of energy science and cloud infrastructure mastery</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card observe">
+                <div class="team-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Dr. Elena Voss</h3>
+                <p class="role">CEO & Nuclear Physicist</p>
+                <p class="bio">PhD MIT | 15+ years SMR design | Ex-NuScale</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="team-card observe">
+                <div class="team-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Dr. Raj Patel</h3>
+                <p class="role">CTO & Cloud Architect</p>
+                <p class="bio">Ex-OpenAI | Kubernetes Expert | CNCF Ambassador</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="team-card observe">
+                <div class="team-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Sara Kim</h3>
+                <p class="role">VP Operations & DevOps</p>
+                <p class="bio">MBA Stanford | Ex-AWS | Infrastructure Automation Lead</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta observe">
+            <h3>Transform Your Energy Infrastructure Today</h3>
+            <p>Enterprise-grade DevOps automation meets nuclear innovation. Deploy with confidence.</p>
+            <a href="#contact" class="btn btn-primary btn-large">
+                <i class="fas fa-rocket"></i> Start Free Trial
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="premium-section">
+        <div class="section-header observe">
+            <h2>Get In Touch</h2>
+            <p>Let's build the future of energy infrastructure together</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <form class="contact-form observe" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Company / Organization" required>
+                <input type="tel" placeholder="Phone (Optional)">
+                <textarea placeholder="Tell us about your infrastructure needs..." rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+
+            <div class="contact-info observe">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Headquarters</h4>
+                        <p>San Francisco, CA<br>Global Operations</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p><a href="mailto:hello@nmgo.ai">hello@nmgo.ai</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p><a href="tel:+14155550199">+1-415-555-0199</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <i class="fas fa-atom"></i> NMGO
+                </div>
+                <p>DevOps-Powered Nuclear Energy Intelligence for Data Centers</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Docs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 NMGO | DevOps Energy Intelligence. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================================================
+        // 1. INITIALIZATION
+        // ============================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            initializeMobileMenu();
+            initializeScrollAnimations();
+            initializeFormHandling();
+            initializeNavbarScroll();
+        });
+
+        // ============================================================================
+        // 2. THEME TOGGLE (DARK / LIGHT MODE)
+        // ============================================================================
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            body.classList.toggle('light');
+            
+            // Save preference
+            const isDark = !body.classList.contains('light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Update button text
+            if (themeToggle) {
+                if (isDark) {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                }
+            }
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'light') {
+                document.body.classList.add('light');
+                if (themeToggle) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                }
+            }
+        }
+
+        // ============================================================================
+        // 3. MOBILE MENU HANDLING
+        // ============================================================================
+
+        function initializeMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking a link
+                const navLinks = navMenu.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        }
+
+        // ============================================================================
+        // 4. SCROLL ANIMATIONS (INTERSECTION OBSERVER)
+        // ============================================================================
+
+        function initializeScrollAnimations() {
+            const elements = document.querySelectorAll('.observe');
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // ============================================================================
+        // 5. NAVBAR SCROLL EFFECT
+        // ============================================================================
+
+        function initializeNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollY = 0;
+            
+            if (!navbar) return;
+            
+            window.addEventListener('scroll', function() {
+                const scrollY = window.scrollY;
+                
+                if (scrollY > 50) {
+                    navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                } else {
+                    navbar.style.boxShadow = 'none';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                }
+                
+                lastScrollY = scrollY;
+            });
+        }
+
+        // ============================================================================
+        // 6. FORM HANDLING
+        // ============================================================================
+
+        function initializeFormHandling() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: this.querySelector('input[type="text"]').value,
+                        email: this.querySelector('input[type="email"]').value,
+                        company: this.querySelectorAll('input[type="text"]')[1].value,
+                        phone: this.querySelector('input[type="tel"]').value || 'Not provided',
+                        message: this.querySelector('textarea').value
+                    };
+                    
+                    // Validation
+                    if (!formData.name || !formData.email || !formData.company || !formData.message) {
+                        showNotification('Please fill in all required fields', 'error');
+                        return;
+                    }
+                    
+                    if (!validateEmail(formData.email)) {
+                        showNotification('Please enter a valid email address', 'error');
+                        return;
+                    }
+                    
+                    // Log data (in production, send to server)
+                    console.log('Form Submitted:', formData);
+                    
+                    // Show success
+                    showNotification('Thank you! We will contact you soon.', 'success');
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
+        }
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 30px;
+                right: 30px;
+                background-color: ${type === 'success' ? '#22c55e' : '#ef4444'};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 2000;
+                animation: slideIn 0.4s ease;
+                font-weight: 600;
+                max-width: 400px;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 5 seconds
+            setTimeout(function() {
+                notification.style.animation = 'slideOut 0.4s ease';
+                setTimeout(() => notification.remove(), 400);
+            }, 5000);
+        }
+
+        // ============================================================================
+        // 7. SMOOTH SCROLL BEHAVIOR
+        // ============================================================================
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // ============================================================================
+        // 8. ACTIVE NAVIGATION LINK
+        // ============================================================================
+
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = '#38bdf8';
+                }
+            });
+        });
+
+        // ============================================================================
+        // 9. DEBOUNCE UTILITY
+        // ============================================================================
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // ============================================================================
+        // 10. KEYBOARD NAVIGATION
+        // ============================================================================
+
+        document.addEventListener('keydown', function(e) {
+            // Close mobile menu on Escape
+            if (e.key === 'Escape') {
+                const navMenu = document.getElementById('navMenu');
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                }
+            }
+        });
+
+        // ============================================================================
+        // 11. ANIMATIONS KEYFRAMES
+        // ============================================================================
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ============================================================================
+        // 12. UTILITY FUNCTIONS
+        // ============================================================================
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(amount);
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        // ============================================================================
+        // 13. EXPORT FUNCTIONS FOR GLOBAL USE
+        // ============================================================================
+
+        window.NMGO = {
+            toggleTheme: toggleTheme,
+            showNotification: showNotification,
+            formatCurrency: formatCurrency,
+            formatNumber: formatNumber
+        };
+
+        console.log('NMGO DevOps Integration loaded successfully ✓');
+    </script>
+
+</body>
+
+</html>

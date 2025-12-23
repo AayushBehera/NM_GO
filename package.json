@@ -1,0 +1,20 @@
+{
+  "name": "nmgo-platform",
+  "version": "1.0.0",
+  "description": "NMGO - Nuclear Micro-Grid Optimizer | DevOps-Grade Energy Intelligence",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "keywords": [
+    "nuclear",
+    "energy",
+    "AI",
+    "optimization",
+    "DevOps",
+    "SMR"
+  ],
+  "author": "NMGO Team",
+  "license": "MIT"
+}
